@@ -4,8 +4,8 @@ import {
   GET_ALL_CUSTOMERS,
   UPDATE_CUSTOMER,
 } from "./types";
-const API_Endpoint = process.env.RECAT_APP_API_URL;
 import axios from "axios";
+const API_Endpoint = process.env.REACT_APP_API_URL;
 
 export const getAllCustomers = () => {
   return (dispatch, getState) => {
@@ -22,7 +22,7 @@ export const addCustomer = (customer) => {
   return (dispatch, getState) => {
     axios
       .post(
-        API_Endpoint + "/customers",
+        API_Endpoint + "customers",
         { name: customer.name, phone: customer.phone, isGold: customer.isGold },
         {
           headers: {
@@ -57,7 +57,7 @@ export const updateCustomer = (data) => {
     console.log(data);
     axios
       .put(
-        API_Endpoint + `${data._id}`,
+        API_Endpoint + `customers/${data._id}`,
         { name: data.name, phone: data.phone, isGold: data.isGold },
         {
           headers: {

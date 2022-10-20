@@ -5,11 +5,11 @@ import {
   GET_ALL_RENTALS,
   UPDATE_RENTAL,
 } from "./types";
-
+const API_Endpoint = process.env.REACT_APP_API_URL;
 export const getAllRentals = () => {
   return (dispatch, getState) => {
     axios
-      .get(`http://localhost:5000/rentals`)
+      .get(API_Endpoint + `rentals`)
       .then((response) => {
         // console.log(response.data);
         dispatch({ type: GET_ALL_RENTALS, rentals: response.data });
@@ -22,7 +22,7 @@ export const addRental = (rental) => {
   return (dispatch, getState) => {
     axios
       .post(
-        `http://localhost:5000/rentals`,
+        API_Endpoint + `rentals`,
         {
           customerId: rental.customer,
           movieId: rental.movie,
@@ -42,7 +42,7 @@ export const addRental = (rental) => {
 export const deleteRental = (id) => {
   return (dispatch, getState) => {
     axios
-      .delete(`http://localhost:5000/rentals/${id}`, {
+      .delete(API_Endpoint + `rentals/${id}`, {
         headers: {
           "x-auth-token": getState().loginReducer.token,
         },
@@ -60,7 +60,7 @@ export const patchRental = (id) => {
     console.log(id);
     axios
       .patch(
-        `http://localhost:5000/rentals/${id}`,
+        API_Endpoint + `rentals/${id}`,
         {},
 
         {

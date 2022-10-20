@@ -10,11 +10,11 @@ import {
   GET_PFS,
   GET_CURRENT_MOVIE,
 } from "./types";
-
+const API_Endpoint = process.env.REACT_APP_API_URL;
 export const getAllMovies = () => {
   return (dispatch, getState) => {
     axios
-      .get("http://localhost:5000/movies")
+      .get(API_Endpoint + "movies")
       .then((response) => {
         console.log(response.data);
         dispatch({ type: GET_ALL_MOVIES, movies: response.data });
@@ -26,7 +26,7 @@ export const getAllMovies = () => {
 export const getCurrentMovie = (id) => {
   return (dispatch, getState) => {
     axios
-      .get(`http://localhost:5000/movies/${id}`)
+      .get(API_Endpoint + `movies/${id}`)
       .then((response) => {
         // console.log(response.data);
         dispatch({ type: GET_CURRENT_MOVIE, movie: response.data });
@@ -38,7 +38,7 @@ export const getCurrentMovie = (id) => {
 export const getPFS = (data) => {
   return (dispatch, getState) => {
     axios
-      .post("http://localhost:5000/movies/pfs", data)
+      .post(API_Endpoint + "movies/pfs", data)
       .then((response) => {
         // console.log("response.data", response.data);
         dispatch({ type: GET_PFS, movies: response.data });
@@ -51,7 +51,7 @@ export const addMovie = (movie) => {
   return (dispatch, getState) => {
     axios
       .post(
-        "http://localhost:5000/movies",
+        API_Endpoint + "movies",
         {
           title: movie.title,
           genreId: movie.genre,
@@ -76,7 +76,7 @@ export const addMovie = (movie) => {
 export const deleteMovie = (id) => {
   return (dispatch, getState) => {
     axios
-      .delete(`http://localhost:5000/movies/${id}`, {
+      .delete(API_Endpoint + `movies/${id}`, {
         headers: {
           "x-auth-token": getState().loginReducer.token,
         },
@@ -92,7 +92,7 @@ export const updatemovie = (movie) => {
   return (dispatch, getState) => {
     axios
       .put(
-        `http://localhost:5000/movies/${movie._id}`,
+        API_Endpoint + `movies/${movie._id}`,
         {
           title: movie.title,
           genreId: movie.genre,
@@ -119,7 +119,7 @@ export const toggleLiked = (id, movie) => {
     // console.log(id , movie.liked);
     axios
       .patch(
-        `http://localhost:5000/movies/${id}`,
+        API_Endpoint + `movies/${id}`,
         {
           liked: !movie.liked,
         },
@@ -146,7 +146,7 @@ export const filterMovies = (id) => {
 export const countMovie = (data) => {
   return (dispatch, getState) => {
     axios
-      .post("http://localhost:5000/movies/count", data)
+      .post(API_Endpoint + "movies/count", data)
       .then((response) => {
         dispatch({
           type: COUNT_MOVIE,

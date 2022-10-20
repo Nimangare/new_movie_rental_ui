@@ -1,10 +1,10 @@
 import axios from "axios";
 import { LOGIN_USER } from "./types";
-
+const API_Endpoint = process.env.REACT_APP_API_URL;
 export const logInUser = (user) => {
   return (dispatch) => {
     axios
-      .post("http://localhost:5000/users/login", user)
+      .post(API_Endpoint + "users/login", user)
       .then((response) => {
         console.log(response.data);
         sessionStorage.setItem("token", response.data);

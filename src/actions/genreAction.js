@@ -8,11 +8,12 @@ import {
   GET_PFS_GENRES,
 } from "./types";
 import axios from "axios";
-const API_Endpoint = process.env.RECAT_APP_API_URL;
+const API_Endpoint = process.env.REACT_APP_API_URL;
+console.log(API_Endpoint);
 export const getAllgenres = () => {
   return (dispatch, getState) => {
     axios
-      .get("genres")
+      .get("http://localhost:5000/genres")
       .then((response) =>
         dispatch({ type: GET_ALL_GENRES, genres: response.data })
       )
@@ -23,7 +24,7 @@ export const getAllgenres = () => {
 export const getCurrentGenre = (id) => {
   return (dispatch, getState) => {
     axios
-      .get(`http://localhost:5000/genres/${id}`)
+      .get(API_Endpoint + `genres/${id}`)
       .then((response) => {
         dispatch({ type: GET_CURRENT_GENRE, genre: response.data });
       })
@@ -35,7 +36,7 @@ export const addGenre = (genre) => {
   return (dispatch, getState) => {
     axios
       .post(
-        "http://localhost:5000/genres",
+        API_Endpoint + "genres",
         { name: genre.name },
         {
           headers: {
@@ -55,7 +56,7 @@ export const addGenre = (genre) => {
 export const deleteGenre = (id) => {
   return (dispatch, getState) => {
     axios
-      .delete(`http://localhost:5000/genres/${id}`, {
+      .delete(API_Endpoint + `genres/${id}`, {
         headers: {
           "x-auth-token": getState().loginReducer.token,
         },
@@ -72,7 +73,7 @@ export const updateGenre = (data) => {
     console.log(data);
     axios
       .put(
-        `http://localhost:5000/genres/${data._id}`,
+        API_Endpoint + `genres/${data._id}`,
         { name: data.name },
         {
           headers: {
@@ -90,7 +91,7 @@ export const updateGenre = (data) => {
 export const countGenre = (data) => {
   return (dispatch, getState) => {
     axios
-      .post("http://localhost:5000/count", data)
+      .post(API_Endpoint + "genres/count", data)
       .then((response) =>
         dispatch({
           type: COUNT_GENRE,
@@ -104,7 +105,7 @@ export const countGenre = (data) => {
 export const getPFSGenres = (data) => {
   return (dispatch, getState) => {
     axios
-      .post("http://localhost:5000/genres/pfs", data)
+      .post(API_Endpoint + "genres/pfs", data)
       .then((response) => {
         // console.log(response.data);
         dispatch({ type: GET_PFS_GENRES, genres: response.data });
