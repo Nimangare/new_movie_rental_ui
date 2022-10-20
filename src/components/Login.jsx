@@ -18,8 +18,8 @@ const FormValidation = () => {
   } = useForm({ resolver: yupResolver(schema) });
 
   const onSubmitHandler = (data) => {
-    // dispatch(logInUser(data));
-    dispatch(loginThunk(data));
+    dispatch(logInUser(data));
+    // dispatch(loginThunk(data));
   };
   return (
     <div>

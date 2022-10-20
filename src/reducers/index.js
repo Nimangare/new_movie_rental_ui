@@ -5,8 +5,8 @@ import { genreReducer } from "./genreReducer";
 import customerReducer from "./customerReducer";
 import movieReducer from "./movieReducer";
 import registerReducer from "./registerReducer";
-// import loginReducer from "./loginReducer";
-import loginReducer from "../slices/logIn";
+import loginReducer from "./loginReducer";
+// import loginReducer from "../slices/logIn";
 import { rentalReducer } from "./rentalReducer";
 
 export default combineReducers({

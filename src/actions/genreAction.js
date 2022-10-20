@@ -13,7 +13,7 @@ console.log(API_Endpoint);
 export const getAllgenres = () => {
   return (dispatch, getState) => {
     axios
-      .get("http://localhost:5000/genres")
+      .get(API_Endpoint + "genres")
       .then((response) =>
         dispatch({ type: GET_ALL_GENRES, genres: response.data })
       )
