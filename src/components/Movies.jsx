@@ -27,7 +27,7 @@ const Movie = () => {
     dispatch(getAllgenres());
     dispatch(countMovie({ title, genre }));
     dispatch(getPFS({ currentPage, pageSize, title, genre, sortColumn }));
-  }, []);
+  }, [movies]);
 
   useEffect(() => {
     dispatch(countMovie({ title, genre }));
