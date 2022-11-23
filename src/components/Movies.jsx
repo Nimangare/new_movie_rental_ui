@@ -17,7 +17,7 @@ const Movie = () => {
   const dispatch = useDispatch();
   const movies = useSelector((state) => state.movieReducer.movies);
   const genres = useSelector((state) => state.genreReducer.genres);
-  const totalNoOfMovies = useSelector((state) => state.movieReducer.count);
+  const   totalNoOfMovies = useSelector((state) => state.movieReducer.count);
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(3);
   const [title, setTitle] = useState("");
